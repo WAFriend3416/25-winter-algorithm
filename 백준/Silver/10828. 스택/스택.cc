@@ -6,6 +6,8 @@
 using namespace std;
 
 int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
     stack<int> s;
     int cmd_cnt;
     cin >> cmd_cnt;
