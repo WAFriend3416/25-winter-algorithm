@@ -22,7 +22,7 @@ int main(){
     }
 
     for(int i = 0; i < N; i++) fill(dist[i],dist[i]+M,-1);
-    dist[0][0] = 0;
+    dist[0][0] = 1;
     queue<pair<int,int> > Q;
     Q.push({0,0});
     while(!Q.empty()){
@@ -39,7 +39,7 @@ int main(){
     }
 
 
-    cout << dist[N-1][M-1]+1;
+    cout << dist[N-1][M-1];
 
     return 0;
 }
