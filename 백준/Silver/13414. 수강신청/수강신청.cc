@@ -13,7 +13,7 @@ int main(){
     int N,M;
     cin >> N >> M;
     unordered_map<string,int> m;
-    for(int i=0; i<M; ++i){
+    for(int i=0; i<M; i++){
         string student_num;
         cin >> student_num;
         m[student_num] = i;
@@ -25,7 +25,7 @@ int main(){
 
     int ens = min(N,(int)m.size()); // 전체 수강인원 보다 신청인원이 적은 경우!
 
-    for(int i=0; i<ens; ++i){
+    for(int i=0; i<ens; i++){
         cout << v[i].first << "\n";
     }
     
