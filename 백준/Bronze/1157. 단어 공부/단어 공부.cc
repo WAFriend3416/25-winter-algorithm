@@ -1,43 +1,37 @@
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <string.h>
-
+#include <bits/stdc++.h>
 using namespace std;
-pair<int,int>arr[26] = {{0,0},};
 
-bool cmpBySecond(const pair<int,int>& a, const pair<int,int>& b)
-{
-    if (a.second == b.second)
-        return a.first > b.first;   // 2차 키
-    return a.second > b.second;     // 1차 키
-}
-
-int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
     string str;
     cin >> str;
 
-    for(int i : str){
-        if(i >= 65 && i <= 90){
-            arr[i-65].first = i-65;
-            arr[i-65].second++;
-        }
-        else{
-           arr[i-97].first = i-97;
-           arr[i-97].second++;
+    int cnt[26] = {0};
+
+    /* 1) 빈도 세기 */
+    for (unsigned char ch : str) {
+        int idx = toupper(ch) - 'A';   // 대소문자 무관
+        cnt[idx]++;
+    }
+
+    /* 2) 최댓값과 다중 최대 여부 판정 */
+    int maxCnt = 0, maxIdx = -1;
+    bool duplicate = false;
+
+    for (int i = 0; i < 26; ++i) {
+        if (cnt[i] > maxCnt) {
+            maxCnt = cnt[i];
+            maxIdx = i;
+            duplicate = false;
+        } else if (cnt[i] == maxCnt) {
+            duplicate = true;
         }
     }
 
-    sort(arr,arr+26,cmpBySecond);
-
-    if(arr[0].second == arr[1].second){
-        cout << "?";
-    }
-    else{
-        cout << char(arr[0].first+65);
-    }
+    /* 3) 출력 */
+    if (duplicate) cout << '?';
+    else           cout << char(maxIdx + 'A');
     return 0;
 }
